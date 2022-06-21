@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/DaisyCastro/Documents/Portfolio-Data/CSUFCOVIDData.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1558"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,14:mainCSUF_COVIDData"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">/* CSUF COVID-19 Data Exploration*/
+
+SELECT * 
+FROM CSUF_COVIDData;
+
+--Total number of cases per week
+
+SELECT Start_Date, End_Date, Weekly_total
+FROM CSUF_COVIDData;
+
+--Data displaying highest to lowest total by Weekly_total
+
+SELECT Start_Date, End_Date, Weekly_total
+FROM CSUF_COVIDData
+ORDER BY Weekly_total DESC;
+
+--Comparing averages between student cases, employee cases, contractor cases and total weekly cases
+
+SELECT AVG( Student_on_campus)+ AVG( student_off_campus) AS AVGStudentCases, AVG( Employee_off_campus)+AVG(employee_on_campus) AS AVGEmployeeCases, AVG( Contractor_off_campus)+AVG(Contractor_on_campus) AS AVGContractorCases, AVG(weekly_total) AS AVGCasesTotal
+FROM CSUF_COVIDData;
+
+--Week of highest cases for students
+
+SELECT Start_Date, End_Date, (student_off_campus+ student_on_campus) AS StudentsTotal
+FROM CSUF_COVIDData
+GROUP BY Start_Date
+ORDER BY StudentsTotal DESC;
+
+--Week of highest cases for employees
+
+SELECT Start_Date, End_Date, (employee_off_campus+ employee_on_campus) AS EmployeesTotal
+FROM CSUF_COVIDData
+GROUP BY Start_Date
+ORDER BY EmployeesTotal DESC;
+
+--Total cases on campus ordered by highest to lowest
+
+SELECT Start_Date, End_Date, (Employee_on_campus+Student_on_campus+ Contractor_on_campus) AS Total_on_campus 
+FROM CSUF_COVIDData
+GROUP BY Start_Date
+ORDER BY Total_on_campus DESC;
+
+--Describing the weekly total using a likert scale 
+
+SELECT Start_Date, End_Date, Weekly_total,
+	CASE	
+		WHEN Weekly_total &gt; 200 THEN 'Very High'
+		WHEN Weekly_total &gt; 100 THEN 'High'
+		WHEN Weekly_total &gt; 50 THEN 'Avobe Average'
+		WHEN Weekly_total &gt; 20 THEN 'Average'
+		WHEN Weekly_total &gt; 10 THEN 'Below Average'
+		ELSE 'Very Low'
+	END AS WeeklyTotalDescription
+	FROM CSUF_COVIDData
+	ORDER BY Weekly_total;
+	
+
+	
+	
+
+
+	</sql><current_tab id="0"/></tab_sql></sqlb_project>
