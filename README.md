@@ -25,5 +25,5 @@ The dashbaord fr the findings was created on Tableau. View dashboard here. 🔗
 Based on this analysis, the COVID-19 re-entry team learned:
 * There were more student cases reported, therefore, there was a higher demmand for staff in charge of student contact tracing. 
 * Student cases on campus decreased when students were on break while employee cases on campus remained the same. 
-* Case counts were thee highest during January, which led the university to postppone the return of students to campus during the Spring semester. 
+* Case counts were thee highest during January, which led the university to postpone the return of students to campus during the Spring semester. 
 
