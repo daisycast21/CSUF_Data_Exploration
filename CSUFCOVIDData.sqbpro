@@ -44,11 +44,11 @@ ORDER BY Total_on_campus DESC;
 
 SELECT Start_Date, End_Date, Weekly_total,
 	CASE	
-		WHEN Weekly_total &gt; 200 THEN 'Very High'
-		WHEN Weekly_total &gt; 100 THEN 'High'
-		WHEN Weekly_total &gt; 50 THEN 'Avobe Average'
-		WHEN Weekly_total &gt; 20 THEN 'Average'
-		WHEN Weekly_total &gt; 10 THEN 'Below Average'
+		WHEN Weekly_total >200 THEN 'Very High'
+		WHEN Weekly_total >100 THEN 'High'
+		WHEN Weekly_total >50 THEN 'Avobe Average'
+		WHEN Weekly_total >20 THEN 'Average'
+		WHEN Weekly_total >10 THEN 'Below Average'
 		ELSE 'Very Low'
 	END AS WeeklyTotalDescription
 	FROM CSUF_COVIDData
